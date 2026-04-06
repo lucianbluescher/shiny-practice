@@ -6,6 +6,7 @@ library(shinyWidgets)
 library(lterdatasampler)
 library(palmerpenguins)
 library(markdown)
+library(shinycssloaders)
 
 #.......................wrangle trout data.......................
 
