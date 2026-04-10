@@ -3,9 +3,18 @@ library(shiny)
 library(tidyverse)
 library(palmerpenguins)
 library(DT)
+library(bslib)
 
 # ---- user interface ----
 ui <- fluidPage(
+    
+    theme = bs_theme(
+        bg = "lightpink",
+        fg = "navy",
+        primary = "orange",
+        base_font = font_google("Roboto"),
+        code_font = font_google("Source Code Pro")
+    ),
     
     # app title ----
     tags$h1("My first Shiny app"),

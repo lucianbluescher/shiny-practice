@@ -3,24 +3,26 @@
 ui <- navbarPage(
     title = "LTER Animal Explorer",
     
+    theme = "fresh-theme.css",
+    
     # Page 1: intro tabPanel
-  
+    
     tabPanel(title = "About this App",
              
              # intro text fluidRow ----
              fluidRow(
-                    
+                 
                  # use columns to create white space on sides
                  column(1),
                  column(10, includeMarkdown("text/about.md")),
                  column(1)
                  
-    ),  # END (Page 1) intro tabPanel, 
-    
-    hr(), # creates light gray horizontal line
-    
-    # footer text ----
-    includeMarkdown("text/footer.md")
+             ),  # END (Page 1) intro tabPanel, 
+             
+             hr(), # creates light gray horizontal line
+             
+             # footer text ----
+             includeMarkdown("text/footer.md")
     ),
     # Page 2: data explorer tabPanel
     tabPanel(title = "Explore the Data",
@@ -42,24 +44,27 @@ ui <- navbarPage(
                                          selected = c("cascade", "pool"),
                                          multiple = TRUE,
                                          options = pickerOptions(actionsBox = TRUE)), # END channel type pickerInput
-                                         
+                             
                              # section checkboxGroupButtons ----
                              checkboxGroupButtons(inputId = "section_input", label = "Select a sampling section(s):",                                            choices = c("clear cut forest", "old growth forest"),
                                                   selected = c("clear cut forest", "old growth forest"),
                                                   individual = FALSE, justified = TRUE, size = "sm",
                                                   checkIcon = list(yes = icon("check", lib = "font-awesome"), 
-                                                                   no = icon("xmark", lib = "font-awesome"))), 
-                         
+                                                                   no = icon("xmark", lib = "font-awesome"))) 
+                             
                          ), # END trout sidebarPanel  
                          # trout mainPanel ----
                          mainPanel(
                              
-                             plotOutput(outputId = "trout_scatterplot_output") |> 
-                                 plotOutput(outputId = "trout_scatterplot") |> 
-                                 shinycssloaders::withSpinner(color = "#006792", type = 1),
+                             shinycssloaders::withSpinner(
+                                 plotOutput(outputId = "trout_scatterplot_output"),
+                                 color = "#006792", type = 1
+                             ),
                              
-                             plotOutput(outputId = "flipperLength_histogram") |> 
-                                 shinycssloaders::withSpinner(color = "#4BA4A4", type = 4, size = 2)
+                             shinycssloaders::withSpinner(
+                                 plotOutput(outputId = "flipperLength_histogram"),
+                                 color = "#4BA4A4", type = 4, size = 2
+                             )
                          )
                      ) # END trout sidebarLayout
                  ), # END Trout tabPanel
@@ -83,7 +88,7 @@ ui <- navbarPage(
                              sliderInput(inputId = "bin_num_input", 
                                          label = "Select number of bins:",
                                          min = 1, max = 100, value = 25) # END bin number sliderInput
-
+                             
                          ), # END penguin sidebarPanel
                          
                          # penguin mainPanel ----
